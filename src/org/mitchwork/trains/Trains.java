@@ -1,9 +1,6 @@
 package org.mitchwork.trains;
 
-import java.util.PriorityQueue;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Trains
 {
@@ -29,16 +26,6 @@ public class Trains
         }
     }
 
-    public static List<City> getShortestPathTo(City target)
-    {
-        List<City> path = new ArrayList<City>();
-        for (City city = target; city != null; city = city.previous)
-            path.add(city);
-
-        Collections.reverse(path);
-        return path;
-    }
-
     public static void main(String[] args)
     {
         City a = new City("A");
@@ -46,23 +33,62 @@ public class Trains
         City c = new City("C");
         City d = new City("D");
         City e = new City("E");
-        a.neighbours = new Route[]{ new Route(b, 5),
-                                     new Route(d, 5),
-                                     new Route(e, 7)};
-        b.neighbours = new Route[]{ new Route(c, 4)};
-        c.neighbours = new Route[]{ new Route(d, 8),
-                                    new Route(e, 2)};
-        d.neighbours = new Route[]{ new Route(c, 8),
-                                     new Route(e, 6)};
-        e.neighbours = new Route[]{ new Route(b, 3) };
+        a.neighbours = new Vector<Route>();
+        a.neighbours.add(new Route(b, 5));
+        a.neighbours.add(new Route(d, 5));
+        a.neighbours.add(new Route(e, 7));
+        b.neighbours = new Vector<Route>();
+        b.neighbours.add(new Route(c, 4));
+        c.neighbours = new Vector<Route>();
+        c.neighbours.add(new Route(d, 8));
+        c.neighbours.add(new Route(e, 2));
+        d.neighbours = new Vector<Route>();
+        d.neighbours.add(new Route(c, 8));
+        d.neighbours.add(new Route(e, 6));
+        e.neighbours = new Vector<Route>();
+        e.neighbours.add(new Route(b, 3));
 
         City[] vertices = { a, b, c, d, e };
+        HashMap<String,City> edges = new HashMap<String,City>();
+        for (City city : vertices) {
+            edges.put(city.name,city);
+        }
+        String[] cities = new String[vertices.length];
+        for (int i = 0;i < vertices.length;i++) {
+            cities[i] = vertices[i].name;
+        }
 
         computePaths(a);
+        /**
         for (City v : vertices) {
             System.out.println("Distance to " + v + ": " + v.minDistance);
             List<City> path = getShortestPathTo(v);
             System.out.println("Path: " + path);
         }
+        */
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
+        String[] inputsplit = null;
+        while (true) {
+            input = scanner.next();
+            if (input.equalsIgnoreCase("quit")) {
+                break;
+            }
+            inputsplit = input.split("-");
+            Trip trip = new Trip();
+            for (String i :inputsplit) {
+                System.out.print(i + ' ');
+                City city = new City(i);
+                if (!edges.containsKey(city.name)) {
+                    System.out.println("NO SUCH City"); // TODO change name
+                    break;
+                }
+                trip.addRoute(edges.get(city.name));
+            }
+            System.out.println(trip.distance);
+
+        }
+
     }
+
 }

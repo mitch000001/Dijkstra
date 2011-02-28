@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
@@ -30,5 +31,6 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="Sun Java 1.6" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
 </project>
 
