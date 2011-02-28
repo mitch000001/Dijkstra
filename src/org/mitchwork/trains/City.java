@@ -1,9 +1,11 @@
 package org.mitchwork.trains;
 
+import java.util.Vector;
+
 class City implements Comparable<City>
 {
     public final String name;
-    public Route[] neighbours;
+    public Vector<Route> neighbours;
     public double minDistance = Double.POSITIVE_INFINITY;
     public City previous;
     public City(String argName) { name = argName; }
