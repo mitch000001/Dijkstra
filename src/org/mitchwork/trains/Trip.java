@@ -6,6 +6,7 @@ class Trip {
     City source;
     Vector<Route> route;
     int distance = 0;
+
     Trip() {
         this.source = null;
         this.route = null;
@@ -29,9 +30,10 @@ class Trip {
         }
     }
     public String toString() {
-        StringBuffer s = new StringBuffer();
+        StringBuilder s = new StringBuilder();
         for (Route r : route) {
             s.append(r.target.name);
         }
+        return s.toString();
     }
 }

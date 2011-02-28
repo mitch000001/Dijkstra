@@ -14,4 +14,20 @@ class City implements Comparable<City>
     {
         return Double.compare(minDistance, other.minDistance);
     }
+    public boolean followsOn(City city) {
+        for (Route r : neighbours) {
+            if (r.target.equals(city)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean followsOn(String cityname) {
+        for (Route r : neighbours) {
+            if (r.target.name.equals(cityname)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

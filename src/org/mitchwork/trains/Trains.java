@@ -50,8 +50,8 @@ public class Trains
 
         City[] vertices = { a, b, c, d, e };
         HashMap<String,City> edges = new HashMap<String,City>();
-        for (City city : vertices) {
-            edges.put(city.name,city);
+        for (City _city : vertices) {
+            edges.put(_city.name,_city);
         }
         String[] cities = new String[vertices.length];
         for (int i = 0;i < vertices.length;i++) {
@@ -76,14 +76,22 @@ public class Trains
             }
             inputsplit = input.split("-");
             Trip trip = new Trip();
-            for (String i :inputsplit) {
-                System.out.print(i + ' ');
-                City city = new City(i);
-                if (!edges.containsKey(city.name)) {
+            Route lastvisited = trip.route.lastElement();
+            for (String str :inputsplit) {
+                System.out.print(str + ' ');
+                City city;
+                if (edges.containsKey(str)) {
+                    city = edges.get(str);
+                } else {
                     System.out.println("NO SUCH City"); // TODO change name
                     break;
                 }
-                trip.addRoute(edges.get(city.name));
+
+                if (trip.route == null) {
+                    trip.addRoute(edges.get(city.name));
+                }
+
+                System.out.println(trip.toString());
             }
             System.out.println(trip.distance);
 
