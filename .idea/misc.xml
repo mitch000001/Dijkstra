@@ -7,6 +7,11 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="9A7CBD190433133A4C04075B988E6663" />
+  <component name="IntelliCalc">
+    <mode value="0" />
+    <system value="10" />
+    <angles value="deg" />
+  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
